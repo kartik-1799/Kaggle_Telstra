@@ -1,5 +1,5 @@
 ## setting working directory
-path <- "/Volumes/External SD/Kaggle_Telstra"
+path <- "./Kaggle_Telstra"
 setwd(path)
 
 
@@ -10,13 +10,13 @@ library(xgboost)
 
 
 ## loading data
-X_train <- fread("./Raw/train.csv")
-X_test <- fread("./Raw/test.csv")
+X_train <- fread("./train.csv")
+X_test <- fread("./test.csv")
 
-event <- fread("./Raw/event_type.csv")
-log <- fread("./Raw/log_feature.csv")
-resource <- fread("./Raw/resource_type.csv")
-severity <- fread("./Raw/severity_type.csv")
+event <- fread("./event_type.csv")
+log <- fread("./log_feature.csv")
+resource <- fread("./resource_type.csv")
+severity <- fread("./severity_type.csv")
 
 
 # event features
@@ -206,7 +206,7 @@ test_xgb <- as.data.frame(matrix(pred, nrow(X_test), 3, byrow=T))
 colnames(test_xgb) <- c("predict_0","predict_1","predict_2")
 test_xgb$id <- test_ids
 
-write.csv(test_xgb, "./Data/submit.csv", row.names=F)
+write.csv(test_xgb, "./submit.csv", row.names=F)
 
 
 
