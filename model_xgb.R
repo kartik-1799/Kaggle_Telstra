@@ -82,20 +82,20 @@ for (i in 2:nrow(X_panel))
   if (X_panel$location[i] == X_panel$location[i-1])
   {
     X_panel$location_order[i] <- X_panel$location_order[i-1] + 1
-    
+
     X_panel$f54_prev[i] <- X_panel$feature_54[i] / X_panel$feature_54[i-1]
     X_panel$f82_prev[i] <- X_panel$feature_82[i] / X_panel$feature_82[i-1]
     X_panel$f170_prev[i] <- X_panel$feature_170[i] / X_panel$feature_170[i-1]
     X_panel$f203_prev[i] <- X_panel$feature_203[i] / X_panel$feature_203[i-1]
     X_panel$f232_prev[i] <- X_panel$feature_232[i] / X_panel$feature_232[i-1]
-    
+
     X_panel$log_prev[i] <- X_panel$log_count[i] / X_panel$log_count[i-1]
     X_panel$unique_prev[i] <- X_panel$log_unique[i] / X_panel$log_unique[i-1]
-    
+
     X_panel$event_type_11_prev[i] <- X_panel$event_type_11[i] - X_panel$event_type_11[i-1]
     X_panel$event_type_35_prev[i] <- X_panel$event_type_35[i] - X_panel$event_type_35[i-1]
     X_panel$event_type_54_prev[i] <- X_panel$event_type_54[i] - X_panel$event_type_54[i-1]
-    
+
     if (!is.na(X_panel$fault_severity[i-1]) & X_panel$fault_severity[i-1] != 0)
     {
       X_panel$fault_before[i] <- X_panel$fault_severity[i-1]
@@ -170,7 +170,7 @@ X_test <- X_test[, ":="(location = as.integer(substr(location,10,nchar(as.charac
                         fault_severity = NULL)]
 
 # onehot encoding categories
-source("./Codes/categorical.R")
+source("./categorical.R")
 X_data <- encode_categories(X_train, X_test, onehot="severity_type")
 
 X_train <- X_data$train
